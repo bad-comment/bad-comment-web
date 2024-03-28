@@ -18,14 +18,18 @@
 </template>
 
 <script>
-import SubjectService from '../../service/subject.service';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+import SubjectService from '../../service/subject.service';
 
 export default {
   setup() {
+    const router = useRouter();
+
     const name = ref('');
     const onSubmit = async (values) => {
-      return SubjectService.create(values.name);
+      await SubjectService.create(values.name);
+      router.back();
     };
 
     return {

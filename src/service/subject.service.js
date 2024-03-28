@@ -27,5 +27,19 @@ const SubjectService = {
     });
     return res.data;
   },
+  createSubjectComment: async function (subjectId, score) {
+    const res = await axios.post(
+      `/api/subjects/${subjectId}/comments`,
+      {
+        score,
+      },
+      {
+        headers: {
+          Authorization: Store.getToken(),
+        },
+      }
+    );
+    return res.data;
+  },
 };
 export default SubjectService;
